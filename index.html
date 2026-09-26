@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR code Generator</title>
+    <link rel="stylesheet" href="qr.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎯 QR码生成器</h1>
+      <p class="subtitle">快速生成二维码</p>
+
+      <form id="qrForm">
+        <div class="form-group">
+          <label for="content">📝 输入内容</label>
+          <input
+            type="text"
+            id="content"
+            placeholder="输入网址、文本或其他内容..."
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="errorCorrection">🛡️ 容错等级</label>
+          <select id="errorCorrection">
+            <option value="L">L - 低（7%数据可恢复）</option>
+            <option value="M" selected>M - 中（15%数据可恢复）</option>
+            <option value="Q">Q - 较高（25%数据可恢复）</option>
+            <option value="H">H - 高（30%数据可恢复）</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>📏 二维码大小</label>
+          <div class="size-container">
+            <div>
+              <label for="width" style="margin-bottom: 5px">宽度 (px)</label>
+              <input type="text" id="width" value="250" placeholder="宽度" />
+            </div>
+            <div>
+              <label for="height" style="margin-bottom: 5px">高度 (px)</label>
+              <input type="text" id="height" value="250" placeholder="高度" />
+            </div>
+          </div>
+        </div>
+
+        <button type="submit">✨ 生成QR码</button>
+      </form>
+
+      <div class="qr-output">
+        <div class="qr-display" id="qrDisplay">
+          <div id="qrcode"></div>
+          <div class="button-group">
+            <button type="button" class="btn-secondary" id="downloadBtn">
+              📥 下载
+            </button>
+            <button type="button" class="btn-secondary" id="copyBtn">
+              📋 复制
+            </button>
+          </div>
+        </div>
+        <div class="info-box" id="message"></div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="qr.js"></script>
+  </body>
+</html>
