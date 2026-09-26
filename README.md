@@ -1,31 +1,35 @@
 # 🎯 QR Code Generator
 
-A lightweight, elegant, and ready-to-use front-end QR code generation tool. Supports real-time text/URL conversion, custom colors, custom dimensions, error correction level selection, and one-click image downloading or copying.
+A lightweight, elegant, and ready-to-use front-end QR code generation tool. Features a responsive two-column layout, real-time debounced generation, custom Wi-Fi network QR creation, color customization, and one-click exporting options.
 
 ## ✨ Features
 
-- ⚡ **Instant Generation**: Convert URLs or arbitrary text into QR codes on the fly.
-- 🎨 **Custom Colors**: Personalize your QR code with custom pattern (foreground) and background colors using color pickers.
-- 🛡️ **Error Correction Control**: Select between **L** (7%), **M** (15%), **Q** (25%), and **H** (30%) data recovery capability.
-- 📏 **Customizable Dimensions**: Adjust width and height values easily (default: 250x250 px).
-- 📥 **One-Click Download**: Export and save your generated QR code as a high-resolution PNG image.
-- 📋 **One-Click Copy**: Built-in Clipboard API support to copy the QR code image directly to your clipboard.
-- 🎨 **Modern UI**: Stylish gradient aesthetics, smooth animation feedback, and clean layout across devices.
+- ⚡ **Real-Time Generation**: Live debounced preview updates as you type without lag.
+- 📶 **Wi-Fi Mode**: Dedicated tab to generate one-click connect Wi-Fi QR codes (SSID, password, encryption).
+- 🎨 **Custom Colors**: Personalize pattern (foreground) and background colors with native color pickers.
+- 🛡️ **Error Correction Control**: Choose between **L** (7%), **M** (15%), **Q** (25%), and **H** (30%) recovery levels.
+- 📏 **Customizable Dimensions**: Adjust width and height dynamically.
+- 📥 **One-Click Download & Copy**: Save high-resolution PNGs or copy images directly to your clipboard.
+- 📐 **Responsive Two-Column Layout**: Left side for inputs, right side for immediate QR preview.
 
 ## 🛠️ Tech Stack
 
 - **HTML5**: Semantic web structure
-- **CSS3**: Flexbox layout, gradient styling, and micro-interactions
-- **JavaScript (ES6+)**: Native DOM manipulation & asynchronous Clipboard API
-- **QRCode.js**: Lightweight client-side QR code rendering library
+- **CSS3**: Flexbox & CSS Grid for responsive two-column layout
+- **JavaScript (ES6+)**: Native DOM manipulation, debounced input events, and Clipboard API
+- **QRCode.js**: Client-side QR rendering library
 
 ## 📁 Project Structure
 
+```
+
 .
-├── index.html # Main layout and external script inclusions
-├── qr.css # Stylesheets and visual animations
-├── qr.js # Core application logic (QR rendering, download, clipboard events)
-└── README.md # Documentation
+├── index.html # Main two-column layout and script setup
+├── qr.css # Grid layout, tab styling, and responsive UI
+├── qr.js # Core logic (Debounced rendering, Wi-Fi encoding, Clipboard & Download)
+└── README.md # Project documentation
+
+```
 
 ## 🚀 Quick Start
 
@@ -33,35 +37,31 @@ A lightweight, elegant, and ready-to-use front-end QR code generation tool. Supp
 
 This project requires no build tools or server environment to run:
 
-1. Clone or download this repository to your machine:
+1. Clone or download this repository:
 
-```
-   git clone [https://github.com/Chuan-dev086/simple-QR-code-generator.git]
-   or (https://github.com/Chuan-dev086/simple-QR-code-generator.git)
+   ```
+   git clone [https://github.com/Chuan-dev086/simple-QR-code-generator.git](https://github.com/Chuan-dev086/simple-QR-code-generator.git)
+   ```
 
-```
-
-1. Navigate to the project directory:
+2. Navigate to the project directory:
 
 ```
 cd simple-QR-code-generator
+
 ```
 
-3. Double-click or open `index.html` in any modern browser to run the application.
+3. Double-click `index.html` or open it with Live Server in VS Code.
 
 ## 📖 Usage
 
-1. **Enter Content**: Type or paste any URL (e.g., `https://example.com`) or text into the input field.
-2. **Configure Settings (Optional)**:
+1. **Select Mode**: Switch between **Text / URL** and **Wi-Fi** tabs at the top.
+2. **Enter Details**: Type your text/URL or enter Wi-Fi network credentials (SSID & Password).
+3. **Customize Settings**:
 
-- Select an **Error Correction Level** (Level H is recommended if you plan to overlay a logo in the center).
-- Pick custom **Pattern Color** and **Background Color** using the color pickers.
-- Specify custom **Width** and **Height** values (minimum recommended size: 100px).
+- Pick custom pattern and background colors.
+- Adjust error correction level and image dimensions.
 
-3. **Generate & Export**:
-
-- Click **✨ Generate QR Code** or press `Enter`.
-- Click **📥 Download** to save the PNG file, or click **📋 Copy** to copy the image to your clipboard.
+4. **Export**: The QR code updates automatically as you type. Click **Download** or **Copy** to save.
 
 ## 📄 License
 
