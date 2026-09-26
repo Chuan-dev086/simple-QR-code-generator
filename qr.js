@@ -16,12 +16,12 @@ function generateQRCode() {
   const height = parseInt(heightInput.value) || 250;
 
   if (!content) {
-    showMessage("请输入内容", "error");
+    showMessage("Please key in content ", "error");
     return;
   }
 
   if (width < 100 || height < 100) {
-    showMessage("大小不能小于100px", "error");
+    showMessage("Size must be at least 100px.", "error");
     return;
   }
 
@@ -38,9 +38,9 @@ function generateQRCode() {
     });
 
     qrDisplay.classList.add("show");
-    showMessage("✅ QR码生成成功！", "success");
+    showMessage("✅ QR code generate successfull:", "success");
   } catch (error) {
-    showMessage("生成失败：" + error.message, "error");
+    showMessage("Generate Failed:" + error.message, "error");
   }
 }
 
@@ -62,7 +62,7 @@ downloadBtn.addEventListener("click", () => {
     img && img.src ? img.src : canvas ? canvas.toDataURL("image/png") : null;
 
   if (!src) {
-    showMessage("下载失败，未找到二维码图像", "error");
+    showMessage("Download failed: QR code image not found", "error");
     return;
   }
 
@@ -70,33 +70,33 @@ downloadBtn.addEventListener("click", () => {
   link.href = src;
   link.download = "qrcode_" + new Date().getTime() + ".png";
   link.click();
-  showMessage("✅ 下载成功！", "success");
+  showMessage("✅ Download successfully!", "success");
 });
 
 copyBtn.addEventListener("click", async () => {
   const canvas = qrcodeContainer.querySelector("canvas");
   if (!canvas) {
-    showMessage("复制失败：未能获取图像数据", "error");
+    showMessage("Copy failed: Failed to get image data", "error");
     return;
   }
 
   try {
     canvas.toBlob((blob) => {
       if (!blob) {
-        showMessage("复制失败", "error");
+        showMessage("Copy failed", "error");
         return;
       }
       navigator.clipboard
         .write([new ClipboardItem({ "image/png": blob })])
         .then(() => {
-          showMessage("✅ 已复制到剪贴板！", "success");
+          showMessage("✅  Copied to clipboard", "success");
         })
         .catch(() => {
-          showMessage("复制失败，请尝试下载", "error");
+          showMessage("Copied failed , Please try download again!", "error");
         });
     });
   } catch (error) {
-    showMessage("复制失败：" + error.message, "error");
+    showMessage("Copy failed:" + error.message, "error");
   }
 });
 
@@ -113,5 +113,5 @@ contentInput.addEventListener("keypress", (e) => {
 });
 
 window.addEventListener("load", () => {
-  showMessage('💡 输入网址或文本，点击"生成QR码"', "info");
+  showMessage('💡Enter a URL or text, then click "Generate"');
 });

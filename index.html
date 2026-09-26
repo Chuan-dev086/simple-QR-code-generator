@@ -8,45 +8,47 @@
   </head>
   <body>
     <div class="container">
-      <h1>🎯 QR码生成器</h1>
-      <p class="subtitle">快速生成二维码</p>
+      <h1>🎯 QR code Generator</h1>
+      <p class="subtitle">Quickly create a QR code</p>
 
       <form id="qrForm">
         <div class="form-group">
-          <label for="content">📝 输入内容</label>
+          <label for="content">📝 QR code content</label>
           <input
             type="text"
             id="content"
-            placeholder="输入网址、文本或其他内容..."
+            placeholder="Enter URL, text, or content..."
             required
           />
         </div>
 
         <div class="form-group">
-          <label for="errorCorrection">🛡️ 容错等级</label>
+          <label for="errorCorrection">🛡️ Error Correction Level</label>
           <select id="errorCorrection">
-            <option value="L">L - 低（7%数据可恢复）</option>
-            <option value="M" selected>M - 中（15%数据可恢复）</option>
-            <option value="Q">Q - 较高（25%数据可恢复）</option>
-            <option value="H">H - 高（30%数据可恢复）</option>
+            <option value="L">L - Low (7% auto-recovery)</option>
+            <option value="M" selected>
+              M - Medium (15% auto-recovery) - Recommended
+            </option>
+            <option value="Q">Q - Quartile (25% auto-recovery)</option>
+            <option value="H">H - High (30% auto-recovery)</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label>📏 二维码大小</label>
+          <label>📏 QR code size </label>
           <div class="size-container">
             <div>
-              <label for="width" style="margin-bottom: 5px">宽度 (px)</label>
-              <input type="text" id="width" value="250" placeholder="宽度" />
+              <label for="width" style="margin-bottom: 5px">Width (px)</label>
+              <input type="text" id="width" value="250" placeholder="width" />
             </div>
             <div>
-              <label for="height" style="margin-bottom: 5px">高度 (px)</label>
-              <input type="text" id="height" value="250" placeholder="高度" />
+              <label for="height" style="margin-bottom: 5px">Height (px)</label>
+              <input type="text" id="height" value="250" placeholder="height" />
             </div>
           </div>
         </div>
 
-        <button type="submit">✨ 生成QR码</button>
+        <button type="submit">✨ Generate QR Code</button>
       </form>
 
       <div class="qr-output">
@@ -54,10 +56,10 @@
           <div id="qrcode"></div>
           <div class="button-group">
             <button type="button" class="btn-secondary" id="downloadBtn">
-              📥 下载
+              📥 Download
             </button>
             <button type="button" class="btn-secondary" id="copyBtn">
-              📋 复制
+              📋 Copy 
             </button>
           </div>
         </div>
