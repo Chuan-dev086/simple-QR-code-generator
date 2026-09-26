@@ -18,32 +18,84 @@ body {
   background: white;
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  padding: 40px;
-  max-width: 500px;
+  padding: 35px;
+  max-width: 850px;
   width: 100%;
 }
 
 h1 {
   text-align: center;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   font-size: 28px;
 }
 
 .subtitle {
   text-align: center;
   color: #999;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   font-size: 14px;
 }
 
-.form-group {
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.tab-group {
+  display: flex;
+  gap: 10px;
   margin-bottom: 20px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  background: #f0f0f0;
+  color: #666;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 0;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.mode-group {
+  transition: all 0.3s;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.form-group {
+  margin-bottom: 18px;
 }
 
 label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #555;
   font-weight: 600;
   font-size: 14px;
@@ -53,7 +105,7 @@ input[type="text"],
 input[type="url"],
 select {
   width: 100%;
-  padding: 12px;
+  padding: 10px 12px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   font-size: 14px;
@@ -62,7 +114,7 @@ select {
 
 input[type="color"] {
   width: 100%;
-  height: 45px;
+  height: 42px;
   padding: 4px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
@@ -90,18 +142,18 @@ input[type="color"]:focus {
 
 button {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition:
     transform 0.2s,
     box-shadow 0.2s;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 button:hover {
@@ -114,38 +166,15 @@ button:active {
 }
 
 .qr-output {
-  margin-top: 30px;
   text-align: center;
-  padding-top: 30px;
-  border-top: 2px solid #f0f0f0;
-}
-
-#qrcodeCanvas {
-  display: none;
 }
 
 .qr-display {
   background: #f9f9f9;
-  padding: 20px;
+  padding: 25px 20px;
   border-radius: 12px;
-  margin-bottom: 15px;
-  display: none;
-}
-
-.qr-display.show {
-  display: block;
-  animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  margin-bottom: 10px;
+  border: 1px solid #ebebeb;
 }
 
 #qrcode {
@@ -156,13 +185,13 @@ button:active {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .button-group button {
   margin-bottom: 0;
   font-size: 14px;
-  padding: 12px;
+  padding: 10px;
 }
 
 .btn-secondary {
@@ -178,11 +207,11 @@ button:active {
 .info-box {
   background: #f0f7ff;
   border-left: 4px solid #667eea;
-  padding: 12px;
+  padding: 10px 12px;
   border-radius: 4px;
   font-size: 13px;
   color: #555;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .error {
@@ -195,4 +224,10 @@ button:active {
   background: #e0ffe0;
   border-left-color: #51cf66;
   color: #00cc00;
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
 }

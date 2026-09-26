@@ -9,77 +9,131 @@
   <body>
     <div class="container">
       <h1>🎯 QR code Generator</h1>
-      <p class="subtitle">Quickly create a QR code</p>
+      <p class="subtitle">Quickly create custom QR codes</p>
 
-      <form id="qrForm">
-        <div class="form-group">
-          <label for="content">📝 QR code content</label>
-          <input
-            type="text"
-            id="content"
-            placeholder="Enter URL, text, or content..."
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="errorCorrection">🛡️ Error Correction Level</label>
-          <select id="errorCorrection">
-            <option value="L">L - Low (7% auto-recovery)</option>
-            <option value="M" selected>
-              M - Medium (15% auto-recovery) - Recommended
-            </option>
-            <option value="Q">Q - Quartile (25% auto-recovery)</option>
-            <option value="H">H - High (30% auto-recovery)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>QR code color </label>
-          <div class="size-container">
-            <div>
-              <label for="fgColor" style="margin-bottom: 5px"
-                >Pattern Color
-              </label>
-              <input type="color" id="fgColor" value="#000000" />
-            </div>
-            <label for="bgColor" style="margin-bottom: 5px"
-              >Background Color</label
-            >
-            <input type="color" id="bgColor" value="#ffffff" />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>📏 QR code size </label>
-          <div class="size-container">
-            <div>
-              <label for="width" style="margin-bottom: 5px">Width (px)</label>
-              <input type="text" id="width" value="250" placeholder="width" />
-            </div>
-            <div>
-              <label for="height" style="margin-bottom: 5px">Height (px)</label>
-              <input type="text" id="height" value="250" placeholder="height" />
-            </div>
-          </div>
-        </div>
-
-        <button type="submit">✨ Generate QR Code</button>
-      </form>
-
-      <div class="qr-output">
-        <div class="qr-display" id="qrDisplay">
-          <div id="qrcode"></div>
-          <div class="button-group">
-            <button type="button" class="btn-secondary" id="downloadBtn">
-              📥 Download
+      <div class="main-layout">
+        <div class="left-panel">
+          <div class="tab-group">
+            <button type="button" class="tab-btn active" id="tabText">
+              📝 Text / URL
             </button>
-            <button type="button" class="btn-secondary" id="copyBtn">
-              📋 Copy
-            </button>
+            <button type="button" class="tab-btn" id="tabWifi">📶 Wi-Fi</button>
+          </div>
+
+          <form id="qrForm">
+            <div id="textGroup" class="mode-group">
+              <div class="form-group">
+                <label for="content">📝 Content</label>
+                <input
+                  type="text"
+                  id="content"
+                  placeholder="Enter URL or text..."
+                  value="https://www.google.com"
+                />
+              </div>
+            </div>
+
+            <div id="wifiGroup" class="mode-group hidden">
+              <div class="form-group">
+                <label for="wifiSsid">📶 Network Name (SSID)</label>
+                <input
+                  type="text"
+                  id="wifiSsid"
+                  placeholder="Enter Wi-Fi name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="wifiPassword">🔑 Password</label>
+                <input
+                  type="text"
+                  id="wifiPassword"
+                  placeholder="Enter Wi-Fi password"
+                />
+              </div>
+              <div class="form-group">
+                <label for="wifiEncryption">🔒 Encryption</label>
+                <select id="wifiEncryption">
+                  <option value="WPA">WPA/WPA2/WPA3</option>
+                  <option value="WEP">WEP</option>
+                  <option value="nopass">None (Open Network)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="errorCorrection">🛡️ Error Correction Level</label>
+              <select id="errorCorrection">
+                <option value="L">L - Low (7%)</option>
+                <option value="M" selected>M - Medium (15%)</option>
+                <option value="Q">Q - Quartile (25%)</option>
+                <option value="H">H - High (30%)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>🎨 Colors</label>
+              <div class="size-container">
+                <div>
+                  <label for="fgColor" style="margin-bottom: 5px"
+                    >Pattern Color</label
+                  >
+                  <input type="color" id="fgColor" value="#000000" />
+                </div>
+                <div>
+                  <label for="bgColor" style="margin-bottom: 5px"
+                    >Background</label
+                  >
+                  <input type="color" id="bgColor" value="#ffffff" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>📏 Size</label>
+              <div class="size-container">
+                <div>
+                  <label for="width" style="margin-bottom: 5px"
+                    >Width (px)</label
+                  >
+                  <input
+                    type="text"
+                    id="width"
+                    value="250"
+                    placeholder="Width"
+                  />
+                </div>
+                <div>
+                  <label for="height" style="margin-bottom: 5px"
+                    >Height (px)</label
+                  >
+                  <input
+                    type="text"
+                    id="height"
+                    value="250"
+                    placeholder="Height"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="right-panel">
+          <div class="qr-output">
+            <div class="qr-display show" id="qrDisplay">
+              <div id="qrcode"></div>
+              <div class="button-group">
+                <button type="button" class="btn-secondary" id="downloadBtn">
+                  📥 Download
+                </button>
+                <button type="button" class="btn-secondary" id="copyBtn">
+                  📋 Copy
+                </button>
+              </div>
+            </div>
+            <div class="info-box" id="message"></div>
           </div>
         </div>
-        <div class="info-box" id="message"></div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
