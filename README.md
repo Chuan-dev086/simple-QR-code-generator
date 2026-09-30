@@ -1,10 +1,11 @@
 # 🎯 QR Code Generator
 
-A lightweight, elegant, and ready-to-use front-end QR code generation tool. Features a responsive two-column layout, real-time debounced generation, custom Wi-Fi network QR creation, color customization, and one-click exporting options.
+A lightweight, elegant, and ready-to-use front-end QR code generation tool. Features a responsive two-column layout, real-time debounced generation, custom Wi-Fi network QR creation, center logo embedding, color customization, and one-click exporting options.
 
 ## ✨ Features
 
 - ⚡ **Real-Time Generation**: Live debounced preview updates as you type without lag.
+- 🖼️ **Center Logo Embedding**: Upload custom logo images positioned seamlessly at the center with automatic High (H-level) error correction.
 - 📶 **Wi-Fi Mode**: Dedicated tab to generate one-click connect Wi-Fi QR codes (SSID, password, encryption).
 - 🎨 **Custom Colors**: Personalize pattern (foreground) and background colors with native color pickers.
 - 🛡️ **Error Correction Control**: Choose between **L** (7%), **M** (15%), **Q** (25%), and **H** (30%) recovery levels.
@@ -16,7 +17,7 @@ A lightweight, elegant, and ready-to-use front-end QR code generation tool. Feat
 
 - **HTML5**: Semantic web structure
 - **CSS3**: Flexbox & CSS Grid for responsive two-column layout
-- **JavaScript (ES6+)**: Native DOM manipulation, debounced input events, and Clipboard API
+- **JavaScript (ES6+)**: Native DOM manipulation, Canvas API, debounced input events, and Clipboard API
 - **QRCode.js**: Client-side QR rendering library
 
 ## 📁 Project Structure
@@ -26,7 +27,7 @@ A lightweight, elegant, and ready-to-use front-end QR code generation tool. Feat
 .
 ├── index.html # Main two-column layout and script setup
 ├── qr.css # Grid layout, tab styling, and responsive UI
-├── qr.js # Core logic (Debounced rendering, Wi-Fi encoding, Clipboard & Download)
+├── qr.js # Core logic (Debounced rendering, Wi-Fi encoding, Canvas logo overlay, Clipboard & Download)
 └── README.md # Project documentation
 
 ```
@@ -45,10 +46,9 @@ This project requires no build tools or server environment to run:
 
 2. Navigate to the project directory:
 
-```
-cd simple-QR-code-generator
-
-```
+   ```
+   cd simple-QR-code-generator
+   ```
 
 3. Double-click `index.html` or open it with Live Server in VS Code.
 
@@ -58,6 +58,7 @@ cd simple-QR-code-generator
 2. **Enter Details**: Type your text/URL or enter Wi-Fi network credentials (SSID & Password).
 3. **Customize Settings**:
 
+- Optionally upload a center logo image.
 - Pick custom pattern and background colors.
 - Adjust error correction level and image dimensions.
 
@@ -65,4 +66,4 @@ cd simple-QR-code-generator
 
 ## 📄 License
 
-This project is licensed under the [MIT License](https://www.google.com/search?q=LICENSE&utm_source=gemini).
+This project is licensed under the [MIT License](https://www.google.com/search?q=LICENSE).
