@@ -7,6 +7,7 @@ const contentInput = document.getElementById("content");
 const wifiSsidInput = document.getElementById("wifiSsid");
 const wifiPasswordInput = document.getElementById("wifiPassword");
 const wifiEncryptionSelect = document.getElementById("wifiEncryption");
+const logoInput = document.getElementById("logoInput");
 
 const errorCorrectionSelect = document.getElementById("errorCorrection");
 const widthInput = document.getElementById("width");
@@ -20,6 +21,7 @@ const messageBox = document.getElementById("message");
 
 let currentMode = "text";
 let debounceTimer = null;
+let uploadedLogo = null;
 
 function escapeWifiString(str) {
   if (!str) return "";
@@ -50,11 +52,16 @@ function getPayload() {
 
 function generateQRCode() {
   const payload = getPayload();
-  const errorCorrection = errorCorrectionSelect.value;
+  let errorCorrection = errorCorrectionSelect.value;
   const width = parseInt(widthInput.value) || 250;
   const height = parseInt(heightInput.value) || 250;
   const fgColor = fgColorInput.value || "#000000";
   const bgColor = bgColorInput.value || "#ffffff";
+
+  if (uploadedLogo) {
+    errorCorrection = "H";
+    errorCorrectionSelect.value = "H";
+  }
 
   if (!payload) {
     qrcodeContainer.innerHTML = "";
@@ -82,9 +89,51 @@ function generateQRCode() {
       colorLight: bgColor,
       correctLevel: QRCode.CorrectLevel[errorCorrection],
     });
+
+    if (uploadedLogo) {
+      setTimeout(() => {
+        attachLogoToCanvas(width, height, bgColor);
+      }, 50);
+    }
+
     showMessage("✅ QR code updated live", "success");
   } catch (error) {
     showMessage("Generation failed: " + error.message, "error");
+  }
+}
+
+function attachLogoToCanvas(width, height, bgColor) {
+  const canvas = qrcodeContainer.querySelector("canvas");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  const logoSize = Math.min(width, height) * 0.22;
+  const x = (width - logoSize) / 2;
+  const y = (height - logoSize) / 2;
+  const padding = 6;
+
+  ctx.fillStyle = bgColor;
+  ctx.fillRect(
+    x - padding / 2,
+    y - padding / 2,
+    logoSize + padding,
+    logoSize + padding,
+  );
+
+  ctx.strokeStyle = "#e0e0e0";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(
+    x - padding / 2,
+    y - padding / 2,
+    logoSize + padding,
+    logoSize + padding,
+  );
+
+  ctx.drawImage(uploadedLogo, x, y, logoSize, logoSize);
+
+  const img = qrcodeContainer.querySelector("img");
+  if (img) {
+    img.src = canvas.toDataURL("image/png");
   }
 }
 
@@ -107,6 +156,25 @@ function showMessage(text, type = "info") {
     }, 2000);
   }
 }
+
+logoInput.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => {
+        uploadedLogo = img;
+        generateQRCode();
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    uploadedLogo = null;
+    generateQRCode();
+  }
+});
 
 tabText.addEventListener("click", () => {
   currentMode = "text";
