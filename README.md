@@ -41,7 +41,8 @@ This project requires no build tools or server environment to run:
 1. Clone or download this repository:
 
    ```
-   git clone [https://github.com/Chuan-dev086/simple-QR-code-generator.git](https://github.com/Chuan-dev086/simple-QR-code-generator.git)
+   1.）git clone [https://github.com/Chuan-dev086/simple-QR-code-generator.git]
+   2.) (https://github.com/Chuan-dev086/simple-QR-code-generator.git)
    ```
 
 2. Navigate to the project directory:
